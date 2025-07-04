@@ -1,0 +1,90 @@
+/* 전체 페이지 */
+body {
+    background-color: #1e1e1e;
+    color: #f0f0f0;
+}
+
+/* 테이블 */
+.table {
+    background-color: #2a2a2a;
+    color: #f0f0f0;
+    border-color: #444;
+}
+
+.table th,
+.table td {
+    border-color: #444;
+}
+
+/* 폼 요소 */
+input, textarea, select, .form-control {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+input::placeholder, textarea::placeholder {
+    color: #aaa;
+}
+
+/* 버튼 */
+.btn-primary {
+    background-color: #0066cc;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #cc0000;
+    border: none;
+}
+
+.btn, .btn:hover {
+    color: #fff;
+}
+
+/* 링크 */
+a {
+    color: #66aaff;
+}
+
+a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #2b2b2b !important;
+}
+
+.navbar-brand,
+.navbar-nav .nav-link {
+    color: #f0f0f0 !important;
+}
+
+/* 드롭다운 메뉴 */
+.dropdown-menu {
+    background-color: #2e2e2e;
+    color: #ffffff;
+}
+
+.dropdown-item {
+    color: #ffffff;
+}
+
+.dropdown-item:hover {
+    background-color: #444;
+}
+
+/* 경고창 */
+.alert {
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+}
+
+/* Footer (있다면) */
+footer {
+    background-color: #2a2a2a;
+    color: #ccc;
+}

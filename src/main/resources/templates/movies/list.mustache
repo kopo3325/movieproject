@@ -1,0 +1,58 @@
+{{>layouts/header}}
+
+<div id="image-container" class="container my-4 text-center">
+    <img src="/imgs/img1.jpg" alt="영화 이미지"
+         width="270"
+         class="img-fluid rounded shadow">
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">UserName</th>
+        <th scope="col">Review</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#movies}}
+        <tr>
+            <th>{{id}}</th>
+            <td><a href="/movie/{{id}}">{{username}}</a></td>
+            <td>{{content}}</td>
+        </tr>
+    {{/movies}}
+    </tbody>
+
+</table>
+<a href="/movie/new">새 글 작성</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const container = document.getElementById('image-container');
+      if (!container) return;
+
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.justifyContent = 'center';
+
+      const description = document.createElement('p');
+      description.textContent = `개봉일     2025.07.02
+러닝타임  133분
+장르        어드벤처, 액션
+등급        12세이상 관람가
+소개
+  “가장 위험한 놈들만 여기 남겨진 거야“ 지구 최상위 포식자가 된 공룡들이 인간 세상으로 나온 5년 후, 인간과 공룡의 위태로운 공존이 이어지는 가운데 인류를 구할 신약 개발을 위해 육지, 하늘, 바다를 지배하는 가장 거대한 공룡들의 DNA가 필요하게 된다. 불가능한 미션 수행을 위해 ‘조라‘(스칼렛 요한슨)와 ‘헨리 박사’(조나단 베일리) 그리고 ‘던컨’(마허샬라 알리)은 공룡들을 추적하며 지구상에서 가장 위험한 섬에 도착하고 폐쇄된 쥬라기 공원의 연구소가 감추어 온 충격적인 진실을 마주하게 되는데... 새로운 캐스트, 새로운 미션, 새로운 공룡, 지상 최대 블록버스터의 새로운 시작!`;
+
+      description.style.marginLeft = '45px';
+      description.style.color = 'white';
+      description.style.maxWidth = '400px';
+      description.style.textAlign = 'left';
+      description.style.whiteSpace = 'pre-wrap'; // 줄바꿈, 공백 유지
+
+      container.appendChild(description);
+    });
+</script>
+
+{{>layouts/footer}}
