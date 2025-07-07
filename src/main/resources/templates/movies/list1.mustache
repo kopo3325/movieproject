@@ -9,9 +9,9 @@
 <table class="table">
     <thead>
     <tr>
-        <th scope="col">Id</th>
-        <th scope="col">UserName</th>
-        <th scope="col">Review</th>
+        <th scope="col">번호</th>
+        <th scope="col">유저명</th>
+        <th scope="col">리뷰 내용</th>
     </tr>
     </thead>
 
@@ -19,14 +19,14 @@
     {{#movies}}
         <tr>
             <th>{{id}}</th>
-            <td><a href="/movie/{{id}}">{{username}}</a></td>
-            <td>{{content}}</td>
+            <td>{{username}}</td>
+            <td><a href="/movie/1/{{id}}">{{content}}</a></td>
         </tr>
     {{/movies}}
     </tbody>
 
 </table>
-<a href="/movie/new">새 글 작성</a>
+<a href="/movie/new/1">새 글 작성</a>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {

@@ -1,0 +1,58 @@
+{{>layouts/header}}
+
+<div id="image-container" class="container my-4 text-center">
+    <img src="/imgs/img3.jpg" alt="영화 이미지"
+         width="270"
+         class="img-fluid rounded shadow">
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">번호</th>
+        <th scope="col">유저명</th>
+        <th scope="col">리뷰 내용</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#movies}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{username}}</td>
+            <td><a href="/movie/3/{{id}}">{{content}}</a></td>
+        </tr>
+    {{/movies}}
+    </tbody>
+
+</table>
+<a href="/movie/new/3">새 글 작성</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const container = document.getElementById('image-container');
+      if (!container) return;
+
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.justifyContent = 'center';
+
+      const description = document.createElement('p');
+      description.textContent = `개봉일     2025.06.06
+러닝타임  133분
+장르        액션, 모험, 판타지
+등급        전체 관람가
+소개
+  “수백년간 지속되어온 바이킹과 드래곤의 전쟁. 드래곤을 없애는 것이 삶의 모든 목적인 바이킹들과 다른 신념을 가진 ‘히컵’은 무리 속에 속하지 못하고 족장인 아버지에게도 인정받지 못한다. 그러던 어느 날, 히컵은 베일에 싸인 전설의 드래곤 나이트 퓨어리인 ‘투슬리스’와 만나게 되고, 드래곤을 죽이라는 바이킹의 신념을 깨고 ‘투슬리스’와 친구가 된다. 하지만 드래곤을 죽여야 된다고 믿는 바이킹 족과 모든 드래곤을 위협하는 더 거대한 존재와 맞닥뜨리게 된 ‘히컵’과 ‘투슬리스’. 세상을 변화시키기 위한 특별한 여정을 시작하게 되는데... 다르다는 건, 특별하다는 것. 세상을 바꿀 우리들의 모험이 시작된다!`;
+
+      description.style.marginLeft = '45px';
+      description.style.color = 'white';
+      description.style.maxWidth = '400px';
+      description.style.textAlign = 'left';
+      description.style.whiteSpace = 'pre-wrap'; // 줄바꿈, 공백 유지
+
+      container.appendChild(description);
+    });
+</script>
+
+{{>layouts/footer}}

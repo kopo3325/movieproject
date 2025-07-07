@@ -1,0 +1,58 @@
+{{>layouts/header}}
+
+<div id="image-container" class="container my-4 text-center">
+    <img src="/imgs/img2.jpg" alt="영화 이미지"
+         width="270"
+         class="img-fluid rounded shadow">
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">번호</th>
+        <th scope="col">유저명</th>
+        <th scope="col">리뷰 내용</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {{#movies}}
+        <tr>
+            <th>{{id}}</th>
+            <td>{{username}}</td>
+            <td><a href="/movie/2/{{id}}">{{content}}</a></td>
+        </tr>
+    {{/movies}}
+    </tbody>
+
+</table>
+<a href="/movie/new/2">새 글 작성</a>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const container = document.getElementById('image-container');
+      if (!container) return;
+
+      container.style.display = 'flex';
+      container.style.alignItems = 'center';
+      container.style.justifyContent = 'center';
+
+      const description = document.createElement('p');
+      description.textContent = `개봉일     2025.06.25
+러닝타임  155분
+장르        드라마, 액션
+등급        12세이상 관람가
+소개
+  “최고가 되지 못한 전설 VS 최고가 되고 싶은 루키! 한때 주목받는 유망주였지만 끔찍한 사고로 F1®에서 우승하지 못하고 한순간에 추락한 드라이버 '소니 헤이스'(브래드 피트). 그의 오랜 동료인 '루벤 세르반테스'(하비에르 바르뎀)에게 레이싱 복귀를 제안받으며 최하위 팀인 APXGP에 합류한다. 그러나 팀 내 떠오르는 천재 드라이버 '조슈아 피어스'(댐슨 이드리스)와 '소니 헤이스'의 갈등은 날이 갈수록 심해지고. 설상가상 우승을 향한 APXGP 팀의 전략 또한 번번이 실패하며 최하위권을 벗어나지 못하고 고전하는데··· 빨간 불이 꺼지고 운명을 건 레이스가 시작된다!`;
+
+      description.style.marginLeft = '45px';
+      description.style.color = 'white';
+      description.style.maxWidth = '400px';
+      description.style.textAlign = 'left';
+      description.style.whiteSpace = 'pre-wrap'; // 줄바꿈, 공백 유지
+
+      container.appendChild(description);
+    });
+</script>
+
+{{>layouts/footer}}

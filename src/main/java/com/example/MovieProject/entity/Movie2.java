@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @ToString
 @Slf4j
-public class Movie {
+public class Movie2 {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,7 +24,7 @@ public class Movie {
     @Column
     private String content;
 
-    public void patch(Movie movie) {
+    public void patch(Movie2 movie) {
         if(movie.username != null) {
             this.username = movie.username;
         }
