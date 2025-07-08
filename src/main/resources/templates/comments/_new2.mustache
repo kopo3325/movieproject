@@ -1,0 +1,48 @@
+<div class="card m-2" id="comments-new" style="background-color: black; color: white;">
+    <div class="card-body">
+        <form>
+            <div class="mb-3"> <!--닉네임 입력란-->
+                <label class="form-label">닉네임</label>
+                <input type="text" class="form-control" id="new-comment-nickname"
+                       style="background-color: #2b2b2b; color: white;">
+            </div>
+            <div class="mb-3"> <!--댓글 입력란-->
+                <label class="form-label">댓글 내용</label>
+                <textarea type="text" class="form-control" rows="3" id="new-comment-body"
+                          style="background-color: #2b2b2b; color: white;"></textarea>
+            </div>
+            {{#movie}} <!--히든 인풋-->
+                <input type="hidden" id="new-comment-movie-id" value="{{id}}">
+            {{/movie}}
+            <button type="button" class="btn btn-primary" id="comment-create-btn">Comment Create</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    {
+        const commentCreateBtn = document.querySelector("#comment-create-btn");
+        commentCreateBtn.addEventListener("click", function(){
+            //새 댓글의 정보를 담고 있는 객체를 생성
+            const comment = {
+                nickname: document.querySelector("#new-comment-nickname").value,
+                body:document.querySelector("#new-comment-body").value,
+                movieId:document.querySelector("#new-comment-movie-id").value
+            };
+
+            const url = `/api/movies/2/${comment.movieId}/comments`;
+
+            fetch(url, {
+                method : "POST",
+                headers : {
+                    "Content-Type" : "application/json"
+                },
+                body : JSON.stringify(comment)
+            }).then(response =>{
+                const msg = (response.ok) ? "댓글 등록 완료" : "댓글 등록 실패";
+                alert(msg);
+                window.location.reload();
+            });
+        });
+    }
+</script>

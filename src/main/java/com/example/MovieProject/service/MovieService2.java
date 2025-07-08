@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class MovieService2 {
+public class MovieService2 {  //F1
     @Autowired
     private MovieRepository2 movieRepository;
 
@@ -61,7 +61,6 @@ public class MovieService2 {
 
         movieRepository.findById(-1L).orElseThrow(() -> new IllegalArgumentException("실패"));
 
-        //리턴
         return movieList;
     }
 }

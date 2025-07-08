@@ -11,6 +11,5 @@ public interface CommentRepository3 extends JpaRepository<Comment3, Long> {
             nativeQuery = true)
     List<Comment3> findByMovieId (Long movieId);
 
-    //특정 닉네임의 모든 댓글 조회
     List<Comment3> findByNickname(String nickname);
 }

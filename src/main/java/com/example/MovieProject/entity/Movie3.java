@@ -13,7 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 @Getter
 @ToString
 @Slf4j
-public class Movie3 {
+public class Movie3 {  //드래곤 길들이기
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

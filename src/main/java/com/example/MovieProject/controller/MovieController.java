@@ -9,6 +9,8 @@ import com.example.MovieProject.repository.MovieRepository1;
 import com.example.MovieProject.repository.MovieRepository2;
 import com.example.MovieProject.repository.MovieRepository3;
 import com.example.MovieProject.service.CommentService1;
+import com.example.MovieProject.service.CommentService2;
+import com.example.MovieProject.service.CommentService3;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,33 +34,37 @@ public class MovieController {
     private MovieRepository3 movieRepository3;
 
     @Autowired
-    private CommentService1 commentService;
+    private CommentService1 commentService1;
+    @Autowired
+    private CommentService2 commentService2;
+    @Autowired
+    private CommentService3 commentService3;
 
     @GetMapping("/movie/main")
     public String mainPage(Model model) {
         model.addAttribute("imgPath", "/imgs/img1.jpg");
 
         List<Movie1> movies = movieRepository1.findAll();
-        model.addAttribute("movies", movies); // <- 이 줄이 중요
+        model.addAttribute("movies", movies);
         return "movies/main";
     }
 
-    @GetMapping("/movie/new/1")  //쥬라기월드 새글 작성
+    @GetMapping("/movie/new/1")  //쥬라기 월드
     public String newMovieForm1() {
         return "/movies/new1";
     }
 
-    @GetMapping("/movie/new/2")  //F1 새글 작성
+    @GetMapping("/movie/new/2")  //F1
     public String newMovieForm2() {
         return "/movies/new2";
     }
 
-    @GetMapping("/movie/new/3")  //드래곤 길들이기 새글 작성
+    @GetMapping("/movie/new/3")  //드래곤 길들이기
     public String newMovieForm3() {
         return "/movies/new3";
     }
 
-    @PostMapping("/movie/1/create")
+    @PostMapping("/movie/1/create")  //쥬라기 월드
     public String newMovie1(Movieform movieform) {
 
         Movie1 movie = movieform.toEntity1();
@@ -68,7 +74,7 @@ public class MovieController {
         return "redirect:/movie/1/" + saved.getId();
     }
 
-    @PostMapping("/movie/2/create")
+    @PostMapping("/movie/2/create")  //F1
     public String newMovie2(Movieform movieform) {
 
         Movie2 movie = movieform.toEntity2();
@@ -78,7 +84,7 @@ public class MovieController {
         return "redirect:/movie/2/" + saved.getId();
     }
 
-    @PostMapping("/movie/3/create")
+    @PostMapping("/movie/3/create")  //드래곤 길들이기
     public String newMovie3(Movieform movieform) {
 
         Movie3 movie = movieform.toEntity3();
@@ -88,11 +94,11 @@ public class MovieController {
         return "redirect:/movie/3/" + saved.getId();
     }
 
-    @GetMapping("/movie/1/{number}")  //쥬라기월드 리뷰상세
+    @GetMapping("/movie/1/{number}")  //쥬라기 월드
     public String movieShow1(@PathVariable Long number, Model model) {
 
         Movie1 saved = movieRepository1.findById(number).orElse(null);
-        List<CommentDto> commentDtos = commentService.comments(number);
+        List<CommentDto> commentDtos = commentService1.comments(number);
 
         model.addAttribute("movie", saved);
         model.addAttribute("commentDtos", commentDtos);
@@ -100,11 +106,11 @@ public class MovieController {
         return "movies/show1";
     }
 
-    @GetMapping("/movie/2/{number}")  //F1 리뷰상세
+    @GetMapping("/movie/2/{number}")  //F1
     public String movieShow2(@PathVariable Long number, Model model) {
 
         Movie2 saved = movieRepository2.findById(number).orElse(null);
-        List<CommentDto> commentDtos = commentService.comments(number);
+        List<CommentDto> commentDtos = commentService2.comments(number);
 
         model.addAttribute("movie", saved);
         model.addAttribute("commentDtos", commentDtos);
@@ -112,11 +118,11 @@ public class MovieController {
         return "movies/show2";
     }
 
-    @GetMapping("/movie/3/{number}")  //드래곤길들이기 리뷰상세
+    @GetMapping("/movie/3/{number}")  //드래곤 길들이기
     public String movieShow3(@PathVariable Long number, Model model) {
 
         Movie3 saved = movieRepository3.findById(number).orElse(null);
-        List<CommentDto> commentDtos = commentService.comments(number);
+        List<CommentDto> commentDtos = commentService3.comments(number);
 
         model.addAttribute("movie", saved);
         model.addAttribute("commentDtos", commentDtos);
@@ -124,8 +130,7 @@ public class MovieController {
         return "movies/show3";
     }
 
-
-    @GetMapping("/movies1")  //쥬라기월드 리뷰 목록
+    @GetMapping("/movies1")  //쥬라기 월드
     public String movieAll1(Model model) {
         ArrayList<Movie1> movies = movieRepository1.findAll();
 
@@ -134,7 +139,7 @@ public class MovieController {
         return "movies/list1";
     }
 
-    @GetMapping("/movies2")  //F1 리뷰 목록
+    @GetMapping("/movies2")  //F1
     public String movieAll2(Model model) {
         ArrayList<Movie2> movies = movieRepository2.findAll();
 
@@ -143,7 +148,7 @@ public class MovieController {
         return "movies/list2";
     }
 
-    @GetMapping("/movies3")  //드래곤길들이기 리뷰 목록
+    @GetMapping("/movies3")  //드래곤 길들이기
     public String movieAll3(Model model) {
         ArrayList<Movie3> movies = movieRepository3.findAll();
 
@@ -158,7 +163,7 @@ public class MovieController {
         return "img";
     }
 
-    @GetMapping("/movie/1/{id}/edit")  //쥬라기월드 수정
+    @GetMapping("/movie/1/{id}/edit")  //쥬라기 월드
     public String edit1(@PathVariable Long id, Model model) {
 
         Movie1 saved = movieRepository1.findById(id).orElse(null);
@@ -168,7 +173,7 @@ public class MovieController {
         return "movies/edit1";
     }
 
-    @GetMapping("/movie/2/{id}/edit")  //F1 수정
+    @GetMapping("/movie/2/{id}/edit")  //F1
     public String edit2(@PathVariable Long id, Model model) {
 
         Movie2 saved = movieRepository2.findById(id).orElse(null);
@@ -178,7 +183,7 @@ public class MovieController {
         return "movies/edit2";
     }
 
-    @GetMapping("/movie/3/{id}/edit")  //드래곤길들이기 수정
+    @GetMapping("/movie/3/{id}/edit")  //드래곤 길들이기
     public String edit3(@PathVariable Long id, Model model) {
 
         Movie3 saved = movieRepository3.findById(id).orElse(null);
@@ -188,7 +193,7 @@ public class MovieController {
         return "movies/edit3";
     }
 
-    @PostMapping("/movie/1/update")
+    @PostMapping("/movie/1/update")  //쥬라기 월드
     public String update1(Movieform movieform) {
 
         Movie1 movie = movieform.toEntity1() ;
@@ -201,7 +206,7 @@ public class MovieController {
         return "redirect:/movie/1/" + movie.getId();
     }
 
-    @PostMapping("/movie/2/update")
+    @PostMapping("/movie/2/update")  //F1
     public String update2(Movieform movieform) {
 
         Movie2 movie = movieform.toEntity2() ;
@@ -214,7 +219,7 @@ public class MovieController {
         return "redirect:/movie/2/" + movie.getId();
     }
 
-    @PostMapping("/movie/3/update")
+    @PostMapping("/movie/3/update")  //드래곤 길들이기
     public String update3(Movieform movieform) {
 
         Movie3 movie = movieform.toEntity3() ;
@@ -227,7 +232,7 @@ public class MovieController {
         return "redirect:/movie/3/" + movie.getId();
     }
 
-    @GetMapping("/movie/1/{id}/delete")  //쥬라기월드 삭제
+    @GetMapping("/movie/1/{id}/delete")  //쥬라기 월드
     public String deleteMovie1(@PathVariable Long id, RedirectAttributes rttr) {
 
         Movie1 saved = movieRepository1.findById(id).orElse(null);
@@ -239,7 +244,7 @@ public class MovieController {
         return "redirect:/movies1";
     }
 
-    @GetMapping("/movie/2/{id}/delete")  //쥬라기월드 삭제
+    @GetMapping("/movie/2/{id}/delete")  //F1
     public String deleteMovie2(@PathVariable Long id, RedirectAttributes rttr) {
 
         Movie2 saved = movieRepository2.findById(id).orElse(null);
@@ -251,7 +256,7 @@ public class MovieController {
         return "redirect:/movies2";
     }
 
-    @GetMapping("/movie/3/{id}/delete")  //쥬라기월드 삭제
+    @GetMapping("/movie/3/{id}/delete")  //드래곤 길들이기
     public String deleteMovie3(@PathVariable Long id, RedirectAttributes rttr) {
 
         Movie3 saved = movieRepository3.findById(id).orElse(null);
@@ -262,6 +267,4 @@ public class MovieController {
         }
         return "redirect:/movies3";
     }
-
-
 }

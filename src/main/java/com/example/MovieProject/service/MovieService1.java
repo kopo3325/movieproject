@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class MovieService1 {
+public class MovieService1 {  //쥬라기 월드
     @Autowired
     private MovieRepository1 movieRepository;
 
@@ -61,7 +61,6 @@ public class MovieService1 {
 
         movieRepository.findById(-1L).orElseThrow(() -> new IllegalArgumentException("실패"));
 
-        //리턴
         return movieList;
     }
 }

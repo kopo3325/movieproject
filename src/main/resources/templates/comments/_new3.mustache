@@ -30,7 +30,7 @@
                 movieId:document.querySelector("#new-comment-movie-id").value
             };
 
-            const url = "/api/movies/" + comment.movieId + "/comments";
+            const url = `/api/movies/3/${comment.movieId}/comments`;
 
             fetch(url, {
                 method : "POST",

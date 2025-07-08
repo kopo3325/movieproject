@@ -35,7 +35,6 @@ public class CommentService3 {
 
         Comment3 saved = commentRepository3.save(comment);
 
-        //DTO로 변환 후 반환
         return CommentDto.createCommentDto3(saved);
     }
 
